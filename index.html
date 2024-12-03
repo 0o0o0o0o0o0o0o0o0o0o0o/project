@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>كلية التقنية - الترحيب</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- خطوط جوجل -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=arabic" rel="stylesheet">
+    <!-- تنسيقات CSS مدمجة -->
+    <style>
+        /* المتغيرات الأساسية */
+        :root {
+            --primary-color: #4CAF50;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --font-family: 'Roboto', sans-serif;
+        }
+
+        /* إعادة تعيين الأنماط الأساسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* زر القائمة في الأجهزة الصغيرة */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: var(--text-color);
+            margin-bottom: 4px;
+            border-radius: 5px;
+        }
+
+        /* تقنية Checkbox Hack */
+        #menu-toggle-checkbox {
+            display: none;
+        }
+
+        #menu-toggle-checkbox:checked ~ .nav-links {
+            display: flex;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            flex-direction: column;
+            width: 200px;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+
+        /* قسم الترحيب */
+        .welcome-section {
+            height: 100vh;
+            background: url('https://github.com/user-attachments/assets/5567b362-a246-44f4-beef-a51085a53440') center center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 80px; /* لتعويض شريط التنقل */
+        }
+
+        .welcome-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-content {
+            position: relative;
+            color: #fff;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .welcome-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        /* نموذج الإدخال */
+        .login-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background: transparent;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0 5px;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -10px;
+            font-size: 12px;
+            color: var(--primary-color);
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+        .btn-secondary {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Checkbox Hack -->
+    <input type="checkbox" id="menu-toggle-checkbox">
+    <label for="menu-toggle-checkbox" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="logo"><a href="index.html"><img src="https://github.com/user-attachments/assets/410a954a-93ea-4594-9d08-c3ff12dfe6e7" alt="Logo"></a></div>
+        <ul class="nav-links">
+            <li><a href="">الرئيسية</a></li>
+            <li><a href="https://youtu.be/P2C3kn9Fjbk">نبذة عن الكلية</a></li>
+            <li><a href="https://tvtc.gov.sa/ar">الموقع الرسمي</a></li>
+        </ul>
+    </nav>
+
+    <!-- قسم الترحيب -->
+    <section class="welcome-section" id="welcome">
+        <div class="welcome-overlay"></div>
+        <div class="welcome-content">
+            <h1>مرحباً بكم في كلية التقنية</h1>
+            <p>نحن هنا لنقود المستقبل من خلال الابتكار والتكنولوجيا.</p>
+            <form class="login-form" action="specializations.html" method="get">
+                <div class="input-group">
+                    <input type="text" id="username" name="username" required autocomplete="off" placeholder=" ">
+                    <label for="username">اسم المستخدم</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required placeholder=" ">
+                    <label for="password">كلمة المرور</label>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">OK</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
